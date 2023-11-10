@@ -1,0 +1,18 @@
+* {
+  margin: auto;
+}
+.picture {
+  color: black;
+  max-width: 320px;
+  margin-top: 50px;
+}
+.picture img {
+  width: 180px;
+}
+.container {
+  display: flex;
+}
+.robot {
+  max-width: 350px;
+  margin-left: 50px;
+}
