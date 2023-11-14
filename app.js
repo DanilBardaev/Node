@@ -50,7 +50,6 @@ function addLine(line) {
 app.use((req, res, next) => {
   const err = new Error("Couldn't connect to path");
   err.status = 404;
-
   next(err);
 });
 app.get("env") == "production";
@@ -64,9 +63,9 @@ if (app.get("env") == "production") {
 if (app.get("env") != "development") {
   app.use(function (err, req, res, next) {
     res.status = 404;
-    url =
+    link =
       "https://s3.amazonaws.com/images.seroundtable.com/t-google-404-1299071983.jpg";
-    res.render("error.ejs", { err });
+    res.render("error.ejs", { err, link});
   });
 } else {
   app.use(function (err, req, res, next) {

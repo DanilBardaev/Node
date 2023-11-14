@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./style.css" />
+    <%- include('head.ejs') %>
   </head>
   <body>
+    <header><%- include('header.ejs') %></header>
     <div class="container">
       <div class="picture">
         <img src="error.png" alt="" />
@@ -14,13 +16,12 @@
         <br />
         <%if(err.status === 404){%>
         <h1><%=err.message%></h1>
-
         <%}%>
       </div>
-      <div class="robot">
-        <img src="404.jpg" alt="" />
-        <p></p>
+      <div class="robot my-5">
+        <img src="<%=link%>" alt="">
       </div>
     </div>
+    <footer><%- include('footer.ejs') %></footer>
   </body>
 </html>
