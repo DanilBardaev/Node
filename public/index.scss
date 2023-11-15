@@ -1,0 +1,12 @@
+@import "/views/head.ejs";
+@import "../public/css/bootstrap-5.0.2/scss/variables";
+@import "../public/css/bootstrap-5.0.2/scss/mixins";
+@import "../public/css/bootstrap-5.0.2/scss/utilities/";
+@import "../public/css/bootstrap-5.0.2/scss/functions";
+@import "../public/css/bootstrap-5.0.2/scss/maps";
+
+$var1: #d45757;
+
+.btn-outline-success {
+  background-color: @var1;
+}

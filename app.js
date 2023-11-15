@@ -13,6 +13,15 @@ app.use(express.static(path.join(__dirname, "views")));
 app.use(express.json());
 app.use(express.urlencoded({ extendend: true }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  "css/bootstrap.css",
+  express.static(
+    path.join(
+      __dirname,
+      "public/css/bootstrap-5.0.2/dist/css/bootstrap-5.0.2.min.css"
+    )
+  )
+);
 
 app.use(favicon(__dirname + "/public/favicon.png"));
 
@@ -65,7 +74,7 @@ if (app.get("env") != "development") {
     res.status = 404;
     link =
       "https://s3.amazonaws.com/images.seroundtable.com/t-google-404-1299071983.jpg";
-    res.render("error.ejs", { err, link});
+    res.render("error.ejs", { err, link });
   });
 } else {
   app.use(function (err, req, res, next) {
