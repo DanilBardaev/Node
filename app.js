@@ -2,9 +2,10 @@ const express = require("express");
 const favicon = require("express-favicon");
 const path = require("path");
 const fs = require("fs");
+
 const app = express("");
 const ejs = require("ejs");
-
+const myRoutes = require("./routers/index_routers");
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
@@ -26,21 +27,21 @@ app.use(
 app.use(favicon(__dirname + "/public/favicon.png"));
 
 const port = "3000";
-app.get("/test", (req, res) => {
-  res.sendFile(path.join(dirname + "/public/index.html"));
-  addLine("Пинганули /");
-});
+// app.get("/test", (req, res) => {
+//   res.sendFile(path.join(dirname + "/public/index.html"));
+//   addLine("Пинганули /");
+// });
 
-app.get("/test", (req, res) => {
-  console.log("Прошли по пути тест");
-  res.end("Hello");
-});
+// app.get("/test", (req, res) => {
+//   console.log("Прошли по пути тест");
+//   res.end("Hello");
+// });
 
-app.post("/test", (req, res) => {
-  console.log("Прошли по пути post test");
-  console.log(req.body);
-  res.end("Прошли по пути post test");
-});
+// app.post("/test", (req, res) => {
+//   console.log("Прошли по пути post test");
+//   console.log(req.body);
+//   res.end("Прошли по пути post test");
+// });
 app.listen(port, function () {
   console.log("Сервер запущен порт " + port);
   addLine("server started ");
