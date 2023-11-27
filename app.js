@@ -5,10 +5,15 @@ const fs = require("fs");
 
 const app = express("");
 const ejs = require("ejs");
+const sqlite = require("sqlite3");
 const myRoutes = require("./routers/index_routers");
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-
+const Sequelize = require("sequelize");
+const sequelize = new Sequelize({
+  dialect: "sqlite",
+  storage: "test.sqlite",
+});
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "views")));
 app.use(express.json());
