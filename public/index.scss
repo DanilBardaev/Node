@@ -2,7 +2,7 @@
 @import "./css/bootstrap-5.3.2/scss/variables";
 @import "./css/bootstrap-5.3.2/scss/variables-dark";
 @import "./css/bootstrap-5.3.2/scss/mixins";
-
+@import "./css/bootstrap-5.3.2/scss/navbar";
 * {
 }
 .btn.btn-outline-success {
@@ -20,4 +20,22 @@
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: rgb(14, 155, 190);
   --bs-gradient: none;
+}
+.nav-item {
+  --bs-nav-link-padding-x: 1rem;
+  --bs-nav-link-padding-y: 0.5rem;
+  --bs-nav-link-font-weight: ;
+  --bs-nav-link-color: #red;
+  --bs-nav-link-hover-color: #red;
+  --bs-nav-link-disabled-color: #red;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0px;
+  margin-bottom: 0px;
+  list-style: none;
+  color: red;
+}
+
+h1 {
+  color: purple;
 }

@@ -2,12 +2,21 @@ const express = require("express");
 const favicon = require("express-favicon");
 const path = require("path");
 const fs = require("fs");
+
 const app = express("");
 const ejs = require("ejs");
-
+const sqlite = require("sqlite3");
+const myRoutes = require("./routers/index_routers");
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-
+const Sequelize = require("sequelize");
+const sequelize = new Sequelize({
+  dialect: "sqlite",
+  storage: "test.sqlite",
+  define: {
+    timestamps: false,
+  },
+});
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "views")));
 app.use(express.json());
@@ -22,25 +31,25 @@ app.use(
     )
   )
 );
-
+// .
 app.use(favicon(__dirname + "/public/favicon.png"));
 
 const port = "3000";
-app.get("/test", (req, res) => {
-  res.sendFile(path.join(dirname + "/public/index.html"));
-  addLine("Пинганули /");
-});
+// app.get("/test", (req, res) => {
+//   res.sendFile(path.join(dirname + "/public/index.html"));
+//   addLine("Пинганули /");
+// });
 
-app.get("/test", (req, res) => {
-  console.log("Прошли по пути тест");
-  res.end("Hello");
-});
+// app.get("/test", (req, res) => {
+//   console.log("Прошли по пути тест");
+//   res.end("Hello");
+// });
 
-app.post("/test", (req, res) => {
-  console.log("Прошли по пути post test");
-  console.log(req.body);
-  res.end("Прошли по пути post test");
-});
+// app.post("/test", (req, res) => {
+//   console.log("Прошли по пути post test");
+//   console.log(req.body);
+//   res.end("Прошли по пути post test");
+// });
 app.listen(port, function () {
   console.log("Сервер запущен порт " + port);
   addLine("server started ");
@@ -56,6 +65,54 @@ function addLine(line) {
     }
   );
 }
+
+const User = sequelize.define("user", {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+    allowNull: false,
+  },
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  age: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
+});
+
+sequelize
+  .sync()
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((err) => console.log(err));
+
+// User.create({
+//   name: "Tom",
+//   age: 35,
+// })
+//   .then((res) => {
+//     console.log(res);
+//   })
+//   .catch((err) => console.log(err));
+
+// User.create({
+//   name: "Bob",
+//   age: 31,
+// })
+//   .then((res) => {
+//     const user = { id: res.id, name: res.name, age: res.age };
+//     console.log(user);
+//   })
+//   .catch((err) => console.log(err));
+User.findAll({ raw: true })
+  .then((users) => {
+    console.log(users);
+  })
+  .catch((err) => console.log(err));
 app.use((req, res, next) => {
   const err = new Error("Couldn't connect to path");
   err.status = 404;
