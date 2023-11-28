@@ -2,16 +2,17 @@ const express = require("express");
 const favicon = require("express-favicon");
 const path = require("path");
 const fs = require("fs");
-const app = express("");
 const ejs = require("ejs");
+const app = express("");
+const myRoutes = require("./routers/index_routers");
+app.use(express.json());
+app.use(express.urlencoded({ extendend: true }));
 
+app.use(myRoutes);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "views")));
-app.use(express.json());
-app.use(express.urlencoded({ extendend: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
   "css/bootstrap.css",
@@ -23,24 +24,8 @@ app.use(
   )
 );
 
-app.use(favicon(__dirname + "/public/favicon.png"));
-
 const port = "3000";
-app.get("/test", (req, res) => {
-  res.sendFile(path.join(dirname + "/public/index.html"));
-  addLine("Пинганули /");
-});
 
-app.get("/test", (req, res) => {
-  console.log("Прошли по пути тест");
-  res.end("Hello");
-});
-
-app.post("/test", (req, res) => {
-  console.log("Прошли по пути post test");
-  console.log(req.body);
-  res.end("Прошли по пути post test");
-});
 app.listen(port, function () {
   console.log("Сервер запущен порт " + port);
   addLine("server started ");
@@ -52,17 +37,18 @@ function addLine(line) {
     path.join(__dirname + "/public/logger.txt"),
     line + "\n",
     (err) => {
-      if (err) console.log(err);
+      if (err);
     }
   );
 }
 app.use((req, res, next) => {
-  const err = new Error("Couldn't connect to path");
+  const err = new Error("Could't get path");
   err.status = 404;
+  ``;
   next(err);
 });
 app.get("env") == "production";
-console.log(app.get("env"));
+
 if (app.get("env") == "production") {
   app.use((err, req, res) => {
     res.status(err.status);
@@ -81,5 +67,4 @@ if (app.get("env") != "development") {
     console.log(app.get("env"), err.status, err.message);
   });
 }
-
 // 1
