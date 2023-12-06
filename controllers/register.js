@@ -5,5 +5,13 @@ exports.form = (req, res) => {
 
 exports.submit = (req, res, next) => {
   // const email = req.body.user.email;
-  if ("!Игорь есть в базе данных?") User.create(req.body.user, cb);
-};
+User.findByEmail(req.body.dataform.email, function (err, user) => {
+if (!user) {
+  User.create(req.body.user, (err)=> {
+if(err) return next(err);
+})
+    }
+res.error("Такой пользователь существует в базе");
+res.redirect("/")
+}};
+)
