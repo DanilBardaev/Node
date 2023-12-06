@@ -23,14 +23,13 @@ app.use(
     )
   )
 );
-
 const port = "3000";
 
 app.listen(port, function () {
   console.log("Сервер запущен порт " + port);
   addLine("server started ");
 });
-
+// 3
 function addLine(line) {
   line = line + "timestamp:" + new Date().toLocaleString();
   fs.appendFile(
