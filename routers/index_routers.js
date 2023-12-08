@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const register = require("../controllers/register");
+const entries = require("../controllers/entries");
 const login = require("../controllers/login");
 
 router.get("/", function (req, res) {
@@ -8,8 +9,8 @@ router.get("/", function (req, res) {
 });
 router.post("/", function (req, res) {});
 
-router.get("/entries",entries.?);
-router.post("/entry",entry.?);
+router.get("/entries", entries.list);
+// router.post("/entry",entry.?);
 
 router.get("/login", login.form);
 router.post("/login", login.submit);
