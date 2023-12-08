@@ -13,7 +13,8 @@ class User {
     try {
       const salt = await bcrypt.genSalt(10);
       const hash = await bcrypt.hash(dataform.password, salt);
-      const sql1 = "INSERT INTO user (id, password, age) VALUES (?,?, ?)";
+      const sql1 =
+        "INSERT INTO users (name, email, password, age) VALUES (?,?,?,?)";
       db.run(sql1, dataform.name, dataform.email, hash, dataform.age, cb);
     } catch (err) {
       if (err) return next(err);
@@ -24,15 +25,13 @@ class User {
     db.get("SELECT * FROM users WHERE email = ?", email, cb);
   }
 
-  static authentificate(dataform, cb) {
+  static authentificate(dataform, next, cb) {
     User.findByEmail(dataform.email, cb),
       (err, user) => {
-        if (err) {
-          return cb(err);
-        }
-        if (!user) {
-          return cb();
-        }
+        if (err) return cb(err);
+
+        if (!user) return cb();
+
         const result = bcrypt.compare(dataform.password, user.password);
         if (result) {
           return cb(user); // TODO: check

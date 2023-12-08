@@ -7,12 +7,12 @@ exports.form = (req, res) => {
 // const email = req.body.user.email;
 
 exports.submit = (req, res, next) => {
-  User.findByEmail(req.body.dataform.email, (err, user) => {
+  User.findByEmail(req.body.email, (err, user) => {
     if (err) return next(err);
     if (user) {
-      res.error("Такой пользователь существует в базе");
+      console.log("Такой пользователь существует в базе");
     } else {
-      User.create(req.body.user, (err) => {
+      User.create(req.body, (err) => {
         if (err) return next(err);
       });
     }
