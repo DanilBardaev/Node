@@ -31,3 +31,7 @@ router.post("/register", register.submit);
 //   res.end("post/test");
 // });
 module.exports = router;
+{
+  /* <header><%- include('header.ejs')%></header>
+<footer><%- include('footer.ejs')%></footer> */
+}
