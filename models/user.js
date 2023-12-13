@@ -17,7 +17,7 @@ class User {
         "INSERT INTO users (name, email, password, age) VALUES (?,?,?,?)";
       db.run(sql1, dataform.name, dataform.email, hash, dataform.age, cb);
     } catch (err) {
-      if (err) return next(err);
+      if (err) return next(error);
     }
   }
 
@@ -26,17 +26,18 @@ class User {
   }
 
   static authentificate(dataform, next, cb) {
-    User.findByEmail(dataform.email, cb),
-      (err, user) => {
-        if (err) return cb(err);
-
-        if (!user) return cb();
-
-        const result = bcrypt.compare(dataform.password, user.password);
-        if (result) {
-          return cb(user); // TODO: check
+    User.findByEmail(dataform.email, (err, user) => {
+      if (err) return cb(error);
+      if (!user) return cb();
+      const result = bcrypt.compare(
+        dataform.password,
+        user.password,
+        (err, result) => {
+          if (result) return cb(null, user);
+          cb();
         }
-      };
+      );
+    });
   }
 }
 module.exports = User;

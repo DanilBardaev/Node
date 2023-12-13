@@ -2,22 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="public/style.css" />
-    <!-- <link rel="stylesheet" href="./error.css" /> -->
-    <link rel="stylesheet" href="index.css" />
-    <link rel="stylesheet" href="css/bootstrap-5.3.2/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <script defer src="./css/bootstrap-5.3.2/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./css/index.css" />
     <title><%= title%></title>
   </head>
-  <header><%- include('header.ejs') %></header>
   <body>
-    <%-include('menu.ejs') %>
-    <div class="row">
-      <div class="w-50 mx-auto">
-        <h1>Это главная страница</h1>
-        <img src="12.jpg" alt="" />
-      </div>
-    </div>
-    <footer><%- include('footer.ejs') %></footer>
+    <header><%- include('./partials/menu'); %></header>
+    <p class="card-text">тут контент</p>
+    <footer><%- include('./partials/footer')%></footer>
   </body>
 </html>

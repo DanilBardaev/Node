@@ -2,29 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="public/style.css" />
-    <!-- <link rel="stylesheet" href="./error.css" /> -->
-    <link rel="stylesheet" href="index.css" />
-    <link rel="stylesheet" href="css/bootstrap-5.3.2/dist/css/bootstrap.css" />
-    <%- include('head.ejs') %>
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <script defer src="./css/bootstrap-5.3.2/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+    <title>Error</title>
   </head>
   <body>
-    <header><%- include('header.ejs') %></header>
+    <header><%- include('./partials/header'); %></header>
     <div class="container">
-      <div class="picture">
-        <img src="error.png" alt="" />
-        <h1>404</h1>
-        <br />
+      <div class="container_error-body">
+        <h4 class="error-body_head">Error</h4>
+        <img src="error.jpg" alt="ERROR 404" class="error-body_img" />
         <%if(err.status === 404){%>
         <h1><%=err.message%></h1>
+        <img src="<%=link%>" alt="kukushka" />
         <%}%>
-      </div>
-      <div class="robot my-5">
-        <img src="<%=link%>" alt="" />
+        <p class="error-body_main">Error! Please back later</p>
+
+        <p class="test">kfjhkjsdfhkdfjhkj</p>
       </div>
     </div>
-    <footer><%- include('footer.ejs') %></footer>
+    <footer><%- include('./partials/footer')%></footer>
   </body>
 </html>
